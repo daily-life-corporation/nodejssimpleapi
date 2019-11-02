@@ -155,6 +155,19 @@ usersrouter.route("/getDelete_user").post(function(req, res) {
   });
 
 });
+usersrouter.route("/getUser_Firt").post(function(req, res) {
+  var user_id_user = req.body.user_id_user;
+  connect()
+  var query = `SELECT * FROM user WHERE user_id = '${user_id_user}'`;
+  connection.query(query, function(error, results, fields) {
+    if (error) throw error;
+    results.forEach(result => {
+      console.log(result);
+    });
+    res.status(200).json(results);
+  });
+
+});
 
 
 
